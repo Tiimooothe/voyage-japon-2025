@@ -5,12 +5,25 @@
   <title>Voyage Japon</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    body { display: flex; font-family: sans-serif; margin: 0; height: 100vh; }
-    #map { height: 100%; width: 70%; }
-    #planning { width: 30%; padding: 1em; overflow-y: auto; background: #f8f8f8; }
-    .day { margin-bottom: 1em; }
-    .activity { cursor: pointer; margin: 0.3em 0; color: blue; text-decoration: underline; }
-  </style>
+  body { 
+    display: flex; 
+    flex-direction: row; /* desktop side-by-side */
+    font-family: sans-serif; 
+    margin: 0; 
+    height: 100vh; 
+  }
+  #map { height: 100%; width: 70%; }
+  #planning { width: 30%; padding: 1em; overflow-y: auto; background: #f8f8f8; }
+  .day { margin-bottom: 1em; }
+  .activity { cursor: pointer; margin: 0.3em 0; color: blue; text-decoration: underline; }
+
+  /* ===== Responsive pour mobile ===== */
+  @media (max-width: 768px) {
+    body { flex-direction: column; height: auto; }
+    #map { width: 100%; height: 50vh; }
+    #planning { width: 100%; height: auto; max-height: 50vh; overflow-y: auto; }
+  }
+</style>
 </head>
 <body>
   <div id="map"></div>
@@ -24,9 +37,11 @@
     var itinerary = [
       {
         day: "Jour 2 - Mardi 16 septembre 2025 - Osaka",
+        color: "blue",
         activities: [
           { name: "Kansai International Airport", coords: [34.4342, 135.2444], description: "Arrivée à 10h20" },
           { name: "Quartier de Shinsekai", coords: [34.6525, 135.5067], description: "" },
+          { name: "Déjeuner dans un restaurant local", coords: null, description: "" },
           { name: "Rue de Dotombori", coords: [34.6687, 135.5018], description: "" },
           { name: "Umeda Sky Building", coords: [34.7054, 135.4899], description: "" },
           { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
@@ -34,6 +49,7 @@
       },
       {
         day: "Jour 3 - Mercredi 17 septembre 2025 - Osaka",
+        color: "green",
         activities: [
           { name: "Exposition universelle", coords: [34.8057, 135.5236], description: "" },
           { name: "Retour libre à l'hôtel", coords: null, description: "" },
@@ -42,6 +58,7 @@
       },
       {
         day: "Jour 4 - Jeudi 18 septembre 2025 - Osaka / Nara / Kyoto",
+        color: "red",
         activities: [
           { name: "Todai-ji", coords: [34.6851, 135.8395], description: "" },
           { name: "Parc aux daims", coords: [34.6850, 135.8443], description: "" },
@@ -52,6 +69,7 @@
       },
       {
         day: "Jour 5 - Vendredi 19 septembre 2025 - Kyoto",
+        color: "red",
         activities: [
           { name: "Kinkaku-ji", coords: [35.0394, 135.7292], description: "" },
           { name: "Marché de Nishiki", coords: [35.0042, 135.7651], description: "" },
@@ -63,6 +81,7 @@
       },
       {
         day: "Jour 6 - Samedi 20 septembre 2025 - Kyoto / Amanohashidate",
+        color: "red",
         activities: [
           { name: "Temple Nariaiji", coords: [35.5471, 135.2017], description: "" },
           { name: "Observatoire Bentensan", coords: [35.5451, 135.1965], description: "" },
@@ -74,15 +93,17 @@
       },
       {
         day: "Jour 7 - Dimanche 21 septembre 2025 - Amanohashidate / Kanazawa",
+        color: "red",
         activities: [
           { name: "Jardin Kenrokuen", coords: [36.5613, 136.6620], description: "" },
-          { name: "Higashi-Chaya", coords: [36.5685, 136.6678], description: "" },
+          { name: "Higashi-Chaya", coords: [36.572685868533576, 136.66661374032225], description: "" },
           { name: "Maison Shima", coords: [36.5701, 136.6700], description: "" },
           { name: "Diner dans un restaurant local", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 8 - Lundi 22 septembre 2025 - Kanazawa / Shirakawago / Takayama",
+        color: "red",
         activities: [
           { name: "Quartier de Nagamachi", coords: [36.5830, 136.6670], description: "" },
           { name: "Maison Nomura", coords: [36.5835, 136.6660], description: "" },
@@ -94,6 +115,7 @@
       },
       {
         day: "Jour 9 - Mardi 23 septembre 2025 - Takayama / Matsumoto / Kawaguchiko",
+        color: "red",
         activities: [
           { name: "Takayama Jinya", coords: [36.1406, 137.2512], description: "" },
           { name: "Vieux quartier et rue Sannomachi", coords: [36.1410, 137.2510], description: "" },
@@ -104,6 +126,7 @@
       },
       {
         day: "Jour 10 - Mercredi 24 septembre 2025 - Kawaguchiko / Tokyo",
+        color: "red",
         activities: [
           { name: "Promenade bord du lac Kawaguchi", coords: [35.5048, 138.7886], description: "" },
           { name: "Croisière sur le lac Kawaguchi", coords: [35.5048, 138.7886], description: "" },
@@ -114,6 +137,7 @@
       },
       {
         day: "Jour 11 - Jeudi 25 septembre 2025 - Tokyo",
+        color: "red",
         activities: [
           { name: "Mairie de Tokyo", coords: [35.6895, 139.6917], description: "" },
           { name: "Meiji Jingu", coords: [35.6764, 139.6993], description: "" },
@@ -125,6 +149,7 @@
       },
       {
         day: "Jour 12 - Vendredi 26 septembre 2025 - Tokyo / Paris",
+        color: "red",
         activities: [
           { name: "Petit-déjeuner et derniers achats", coords: null, description: "" },
           { name: "Transfert à l'aéroport de Tokyo Haneda", coords: null, description: "" },
@@ -146,10 +171,21 @@
     // ------------------------------
     // 3. Générer les markers et popups
     // ------------------------------
+    function createIcon(color) {
+      return L.icon({
+        iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+    }
+
     itinerary.forEach(day => {
       day.activities.forEach(act => {
-        if (act.coords) { // <-- IMPORTANT
-          var marker = L.marker(act.coords).addTo(map)
+        if (act.coords) {
+          var marker = L.marker(act.coords, { icon: createIcon(day.color) }).addTo(map)
                         .bindPopup("<b>" + act.name + "</b><br>" + act.description);
           markers.push({ coords: act.coords, marker: marker });
         }
