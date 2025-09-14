@@ -33,6 +33,22 @@
   -webkit-text-size-adjust: 100%; /* empêche Safari de réduire la taille */
   }
 
+  /* ===== Desktop si écran large ===== */
+  /* @media (min-width: 1024px) {
+    body {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+    #map {
+      width: 70%;
+      height: 100%;
+    }
+    #planning {
+      width: 30%;
+      height: 100%;
+    }
+  } */
 </style>
 
 </head>
@@ -62,8 +78,10 @@
         day: "Jour 3 - Mercredi 17 septembre 2025 - Osaka",
         color: "green",
         activities: [
-          { name: "Exposition universelle", coords: [34.8057, 135.5236], description: "" },
-          { name: "Retour libre à l'hôtel", coords: null, description: "" },
+          { name: "(Gros) Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "12h Exposition universelle (porte est)", coords: [34.650559719127564, 135.38964039430834], description: "" },
+          { name: "Diner dans l'expo", coords: null, description: "" },
+          { name: "~22h00 Retour à l'hôtel", coords: null, description: "" },
           { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
@@ -73,12 +91,12 @@
         activities: [
           { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
           { name: "9h00 autocar Nara", coords: null, description: "" },
-          { name: "Todai-ji", coords: [34.6851, 135.8395], description: "" },
-          { name: "Parc aux daims", coords: [34.6850, 135.8443], description: "" },
+          { name: "Todai-ji", coords: [34.68910980040688, 135.8399950170622], description: "" },
+          { name: "Parc aux daims", coords: [34.68524106203164, 135.84305491140404], description: "" },
           { name: "13h00 : déjeuner dans un restaurant local", coords: null, description: "" },
-          { name: "Kasuga Taisha", coords: [34.6863, 135.8497], description: "" },
+          { name: "Kasuga Taisha", coords: [34.681889190765645, 135.84872315741273], description: "" },
           { name: "Transfère pout Kyoto", coords: null, description: "" },
-          { name: "Fushimi Inari", coords: [34.9671, 135.7727], description: "" },
+          { name: "Fushimi Inari", coords: [34.96785270028562, 135.7792784543481], description: "" },
           { name: "19h Diner dan restaurant local et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
@@ -89,89 +107,114 @@
           { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
           { name: "9h00 départ avec guide - transport en communs", coords: null, description: "" },
           { name: "Kinkaku-ji", coords: [35.0394, 135.7292], description: "" },
-          { name: "Marché de Nishiki", coords: [35.0042, 135.7651], description: "" },
+          { name: "Marché de Nishiki", coords: [35.0051583399787, 135.76495052044555], description: "" },
           { name: "13h00 Déjeuner dans un restaurant local", coords: null, description: "" },
           { name: "Kiyomizu-dera", coords: [34.9949, 135.7850], description: "" },
-          { name: "Temps libre - Ruelles Ninenzaka et Sannenzaka", coords: [34.9946, 135.7840], description: "" },
-          { name: "Quartier de Gion", coords: [35.0035, 135.7788], description: "" },
-          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+          { name: "Temps libre - Ruelles Ninenzaka et Sannenzaka", coords: [34.99765677876538, 135.78097179974077], description: "" },
+          { name: "Quartier de Gion", coords: [35.00447995911696, 135.7751794695655], description: "" },
+          { name: "19h00 Diner dans un restaurant local et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 6 - Samedi 20 septembre 2025 - Kyoto / Amanohashidate",
-        color: "red",
+        color: "orange",
         activities: [
-          { name: "Temple Nariaiji", coords: [35.5471, 135.2017], description: "" },
-          { name: "Observatoire Bentensan", coords: [35.5451, 135.1965], description: "" },
-          { name: "Kono-jinja", coords: [35.5540, 135.1970], description: "" },
-          { name: "Bateau promenade sur le lagon d’Aso", coords: [35.5561, 135.1990], description: "" },
-          { name: "Parc Amanohashidate View Land", coords: [35.5565, 135.1985], description: "" },
-          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "08h00 - départ en autocar privatisé pour Amanohashidate", coords: null, description: "" },
+          { name: "Temple Nariaiji", coords: [35.59574813788166, 135.18675322913217], description: "" },
+          { name: "Observatoire Bentensan", coords: [35.586480353504356, 135.1957345896591], description: "" },
+          { name: "Déjeuner dans un restaurant local", coords: null, description: "" },
+          { name: "Kono-jinja", coords: [35.582941023083116, 135.19680974175515], description: "" },
+          { name: "Bateau promenade sur le lagon d’Aso", coords: [35.5682390910198, 135.17845163169076], description: "" },
+          { name: "Parc Amanohashidate View Land", coords: [35.55219115147157, 135.18135612493322], description: "" },
+          { name: "Diner et nuit à l'hôtel  (service 17h30 / 21h)", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 7 - Dimanche 21 septembre 2025 - Amanohashidate / Kanazawa",
-        color: "red",
+        color: "violet",
         activities: [
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "08h00 - départ autocar Kanazawa (260km - 4h avec 1 pause de 20min)", coords: null, description: "" },
+          { name: "13h00 : déjeuner dans un restaurant local", coords: null, description: "" },
           { name: "Jardin Kenrokuen", coords: [36.5613, 136.6620], description: "" },
-          { name: "Higashi-Chaya", coords: [36.572685868533576, 136.66661374032225], description: "" },
-          { name: "Maison Shima", coords: [36.5701, 136.6700], description: "" },
-          { name: "Diner dans un restaurant local", coords: null, description: "" }
+          { name: "Quartier Higashi-Chaya", coords: [36.57276341560346, 136.66713945328752], description: "" },
+          { name: "16h - Maison Shima", coords: [36.57266858047925, 136.6668390456762], description: "" },
+          { name: "19h Diner dans un restaurant local et nuit a l'hôtel", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 8 - Lundi 22 septembre 2025 - Kanazawa / Shirakawago / Takayama",
         color: "red",
         activities: [
-          { name: "Quartier de Nagamachi", coords: [36.5830, 136.6670], description: "" },
-          { name: "Maison Nomura", coords: [36.5835, 136.6660], description: "" },
-          { name: "Marché Omicho", coords: [36.5657, 136.6593], description: "" },
-          { name: "Shirakawago - Observatoire Shiroyama", coords: [36.2600, 136.9000], description: "" },
-          { name: "Promenade libre dans Shirakawago", coords: [36.2600, 136.9000], description: "" },
-          { name: "Diner dans un restaurant local", coords: null, description: "" }
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "08h30 - départ autocar", coords: null, description: "" },
+          { name: "Quartier de Nagamachi", coords: [36.56556888328675, 136.64908296817617], description: "" },
+          { name: "9h30 - Maison Nomura", coords: [36.56446029579407, 136.65052154063298], description: "" },
+          { name: "Marché Omicho", coords: [36.5718196367882, 136.6560582151906], description: "" },
+          { name: "autocar privatisé pour Shirakawago (76km, 1h20 - sans pause)", coords: null, description: "" },
+          { name: "12h45 : déjeuner dans un restaurant local", coords: null, description: "" },
+          { name: "Shirakawago - Observatoire Shiroyama", coords: [36.263262513339775, 136.90925427574177], description: "" },
+          { name: "Promenade libre dans Shirakawago", coords: [36.27362421155837, 136.89962263601112], description: "" },
+          { name: "autocar privatisé vers Takayama (env. 49km, 1h – sans pause)", coords: null, description: "" },
+          { name: "19h diner dans un restaurant local et nuit à l'hotêl", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 9 - Mardi 23 septembre 2025 - Takayama / Matsumoto / Kawaguchiko",
-        color: "red",
+        color: "green",
         activities: [
-          { name: "Takayama Jinya", coords: [36.1406, 137.2512], description: "" },
-          { name: "Vieux quartier et rue Sannomachi", coords: [36.1410, 137.2510], description: "" },
-          { name: "Fabrique de miso à Matsumoto", coords: [36.2381, 137.9727], description: "" },
-          { name: "Château de Matsumoto", coords: [36.2383, 137.9716], description: "" },
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "08h30 - départ à pied", coords: null, description: "" },
+          { name: "08h45 Takayama Jinya", coords: [36.13973514537589, 137.25784053051544], description: "" },
+          { name: "Vieux quartier et rue Sannomachi", coords: [36.141472028437526, 137.25962269612313], description: "" },
+          { name: "10h30 récupération des bagages à l’hôtel et autocar pour Matsumoto", coords: null, description: "" },
+          { name: "Fabrique de miso à Matsumoto", coords: [36.22898661719126, 137.97636699899263], description: "" },
+          { name: "13h00 : déjeuner dans un restaurant local", coords: null, description: "" },
+          { name: "14h30 : Château de Matsumoto", coords: [36.23879142778446, 137.96866354824292], description: "" },
+          { name: "Départ pour Kawaguchiko (140km, 2h40 - avec une pause de 20min)", coords: null, description: "" },
           { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 10 - Mercredi 24 septembre 2025 - Kawaguchiko / Tokyo",
-        color: "red",
+        color: "blue",
         activities: [
-          { name: "Promenade bord du lac Kawaguchi", coords: [35.5048, 138.7886], description: "" },
-          { name: "Croisière sur le lac Kawaguchi", coords: [35.5048, 138.7886], description: "" },
-          { name: "Mont Kachi Kachi", coords: [35.5055, 138.7895], description: "" },
-          { name: "Quartier d'Asakusa", coords: [35.7148, 139.7967], description: "" },
-          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "08h30 - départ en autocar", coords: null, description: "" },
+          { name: "Promenade libre bord du lac Kawaguchi", coords: [35.51451518165198, 138.74047477058838], description: "" },
+          { name: "10h00 Croisière sur le lac Kawaguchi", coords: [35.51605467643915, 138.75659303901014], description: "" },
+          { name: "Mont Kachi Kachi (téléphérique 3min ou randonnée ~1h)", coords: [35.50415434958453, 138.7721109537672], description: "" },
+          { name: "12h00 : déjeuner dans un restaurant local", coords: null, description: "" },
+          { name: "Départ pour Tokyo", coords: null, description: "" },
+          { name: "Quartier d'Asakusa", coords: [35.716339291969845, 139.79651166459195], description: "" },
+          { name: "19h Diner et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 11 - Jeudi 25 septembre 2025 - Tokyo",
-        color: "red",
+        color: "orange",
         activities: [
-          { name: "Mairie de Tokyo", coords: [35.6895, 139.6917], description: "" },
-          { name: "Meiji Jingu", coords: [35.6764, 139.6993], description: "" },
-          { name: "Harajuku", coords: [35.6701, 139.7021], description: "" },
-          { name: "Omotesando", coords: [35.6670, 139.7125], description: "" },
-          { name: "Quartier de Shibuya", coords: [35.6580, 139.7016], description: "" },
-          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "09h00 - départ journée transports en communs", coords: null, description: "" },
+          { name: "Mairie de Tokyo", coords: [35.68985822545646, 139.691532086949], description: "" },
+          { name: "Meiji Jingu", coords: [35.676563162917546, 139.69970140536358], description: "" },
+          { name: "12h00 : déjeuner dans un restaurant local", coords: null, description: "" },
+          { name: "Harajuku", coords: [35.6694630221658, 139.70898598052773], description: "" },
+          { name: "Omotesando", coords: [35.667468284113205, 139.70782882679046], description: "" },
+          { name: "Quartier de Shibuya", coords: [35.65962761591469, 139.70062393036832], description: "" },
+          { name: "18h00 retour vers l'hotel", coords: null, description: "" },
+          { name: "19h00 Diner et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 12 - Vendredi 26 septembre 2025 - Tokyo / Paris",
         color: "red",
         activities: [
-          { name: "Petit-déjeuner et derniers achats", coords: null, description: "" },
-          { name: "Transfert à l'aéroport de Tokyo Haneda", coords: null, description: "" },
-          { name: "Vol AF 279 pour Paris", coords: null, description: "" }
+          { name: "Petit-déjeuner à l'hôtel", coords: null, description: "" },
+          { name: "Journée libre", coords: null, description: "" },
+          { name: "18h00 transfert vers l'aéroport de Tokyo Haneda", coords: [35.55060743473522, 139.77904224448775], description: "" },
+          { name: "22h05 Vol AF 279 pour Paris", coords: null, description: "" }
         ]
       }
     ];
@@ -185,9 +228,9 @@
       attribution: '&copy; Jawg Maps | &copy; OpenStreetMap contributors',
       subdomains: ['a','b','c'],
       maxZoom: 20,
-      tileSize: 512,
-      zoomOffset: -1
-  }).addTo(map);
+/*       tileSize: 512,
+      zoomOffset: -1 */
+    }).addTo(map);
 
     map.invalidateSize();
 
