@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Voyage Japon</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body { display: flex; font-family: sans-serif; margin: 0; height: 100vh; }
+    #map { height: 100%; width: 70%; }
+    #planning { width: 30%; padding: 1em; overflow-y: auto; background: #f8f8f8; }
+    .day { margin-bottom: 1em; }
+    .activity { cursor: pointer; margin: 0.3em 0; color: blue; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="planning" id="planning"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // ------------------------------
+    // 1. Définir l'itinéraire ici
+    // ------------------------------
+    var itinerary = [
+      {
+        day: "Jour 2 - Mardi 16 septembre 2025 - Osaka",
+        activities: [
+          { name: "Kansai International Airport", coords: [34.4342, 135.2444], description: "Arrivée à 10h20" },
+          { name: "Quartier de Shinsekai", coords: [34.6525, 135.5067], description: "" },
+          { name: "Rue de Dotombori", coords: [34.6687, 135.5018], description: "" },
+          { name: "Umeda Sky Building", coords: [34.7054, 135.4899], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 3 - Mercredi 17 septembre 2025 - Osaka",
+        activities: [
+          { name: "Exposition universelle", coords: [34.8057, 135.5236], description: "" },
+          { name: "Retour libre à l'hôtel", coords: null, description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 4 - Jeudi 18 septembre 2025 - Osaka / Nara / Kyoto",
+        activities: [
+          { name: "Todai-ji", coords: [34.6851, 135.8395], description: "" },
+          { name: "Parc aux daims", coords: [34.6850, 135.8443], description: "" },
+          { name: "Kasuga Taisha", coords: [34.6863, 135.8497], description: "" },
+          { name: "Fushimi Inari", coords: [34.9671, 135.7727], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 5 - Vendredi 19 septembre 2025 - Kyoto",
+        activities: [
+          { name: "Kinkaku-ji", coords: [35.0394, 135.7292], description: "" },
+          { name: "Marché de Nishiki", coords: [35.0042, 135.7651], description: "" },
+          { name: "Kiyomizu-dera", coords: [34.9949, 135.7850], description: "" },
+          { name: "Ruelles Ninenzaka et Sannenzaka", coords: [34.9946, 135.7840], description: "" },
+          { name: "Quartier de Gion", coords: [35.0035, 135.7788], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 6 - Samedi 20 septembre 2025 - Kyoto / Amanohashidate",
+        activities: [
+          { name: "Temple Nariaiji", coords: [35.5471, 135.2017], description: "" },
+          { name: "Observatoire Bentensan", coords: [35.5451, 135.1965], description: "" },
+          { name: "Kono-jinja", coords: [35.5540, 135.1970], description: "" },
+          { name: "Bateau promenade sur le lagon d’Aso", coords: [35.5561, 135.1990], description: "" },
+          { name: "Parc Amanohashidate View Land", coords: [35.5565, 135.1985], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 7 - Dimanche 21 septembre 2025 - Amanohashidate / Kanazawa",
+        activities: [
+          { name: "Jardin Kenrokuen", coords: [36.5613, 136.6620], description: "" },
+          { name: "Higashi-Chaya", coords: [36.5685, 136.6678], description: "" },
+          { name: "Maison Shima", coords: [36.5701, 136.6700], description: "" },
+          { name: "Diner dans un restaurant local", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 8 - Lundi 22 septembre 2025 - Kanazawa / Shirakawago / Takayama",
+        activities: [
+          { name: "Quartier de Nagamachi", coords: [36.5830, 136.6670], description: "" },
+          { name: "Maison Nomura", coords: [36.5835, 136.6660], description: "" },
+          { name: "Marché Omicho", coords: [36.5657, 136.6593], description: "" },
+          { name: "Shirakawago - Observatoire Shiroyama", coords: [36.2600, 136.9000], description: "" },
+          { name: "Promenade libre dans Shirakawago", coords: [36.2600, 136.9000], description: "" },
+          { name: "Diner dans un restaurant local", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 9 - Mardi 23 septembre 2025 - Takayama / Matsumoto / Kawaguchiko",
+        activities: [
+          { name: "Takayama Jinya", coords: [36.1406, 137.2512], description: "" },
+          { name: "Vieux quartier et rue Sannomachi", coords: [36.1410, 137.2510], description: "" },
+          { name: "Fabrique de miso à Matsumoto", coords: [36.2381, 137.9727], description: "" },
+          { name: "Château de Matsumoto", coords: [36.2383, 137.9716], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 10 - Mercredi 24 septembre 2025 - Kawaguchiko / Tokyo",
+        activities: [
+          { name: "Promenade bord du lac Kawaguchi", coords: [35.5048, 138.7886], description: "" },
+          { name: "Croisière sur le lac Kawaguchi", coords: [35.5048, 138.7886], description: "" },
+          { name: "Mont Kachi Kachi", coords: [35.5055, 138.7895], description: "" },
+          { name: "Quartier d'Asakusa", coords: [35.7148, 139.7967], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 11 - Jeudi 25 septembre 2025 - Tokyo",
+        activities: [
+          { name: "Mairie de Tokyo", coords: [35.6895, 139.6917], description: "" },
+          { name: "Meiji Jingu", coords: [35.6764, 139.6993], description: "" },
+          { name: "Harajuku", coords: [35.6701, 139.7021], description: "" },
+          { name: "Omotesando", coords: [35.6670, 139.7125], description: "" },
+          { name: "Quartier de Shibuya", coords: [35.6580, 139.7016], description: "" },
+          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+        ]
+      },
+      {
+        day: "Jour 12 - Vendredi 26 septembre 2025 - Tokyo / Paris",
+        activities: [
+          { name: "Petit-déjeuner et derniers achats", coords: null, description: "" },
+          { name: "Transfert à l'aéroport de Tokyo Haneda", coords: null, description: "" },
+          { name: "Vol AF 279 pour Paris", coords: null, description: "" }
+        ]
+      }
+    ];
+
+    // ------------------------------
+    // 2. Initialiser la carte
+    // ------------------------------
+    var map = L.map('map').setView([35.68, 139.76], 11); // par défaut Tokyo
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var markers = [];
+
+    // ------------------------------
+    // 3. Générer les markers et popups
+    // ------------------------------
+    itinerary.forEach(day => {
+      day.activities.forEach(act => {
+        if (act.coords) { // <-- IMPORTANT
+          var marker = L.marker(act.coords).addTo(map)
+                        .bindPopup("<b>" + act.name + "</b><br>" + act.description);
+          markers.push({ coords: act.coords, marker: marker });
+        }
+      });
+    });
+
+    // ------------------------------
+    // 4. Générer le planning dans la colonne
+    // ------------------------------
+    var planningDiv = document.getElementById("planning");
+
+    itinerary.forEach(day => {
+      var dayDiv = document.createElement("div");
+      dayDiv.className = "day";
+
+      var dayTitle = document.createElement("h3");
+      dayTitle.textContent = day.day;
+      dayDiv.appendChild(dayTitle);
+
+      day.activities.forEach(act => {
+        var actDiv = document.createElement("div");
+        actDiv.className = "activity";
+        actDiv.textContent = act.name;
+        actDiv.onclick = function() { goTo(act.coords[0], act.coords[1]); };
+        dayDiv.appendChild(actDiv);
+      });
+
+      planningDiv.appendChild(dayDiv);
+    });
+
+    // ------------------------------
+    // 5. Fonction pour recentrer + ouvrir popup
+    // ------------------------------
+    function goTo(lat, lng) {
+      map.setView([lat, lng], 15);
+      var markerObj = markers.find(m => m.coords[0] === lat && m.coords[1] === lng);
+      if(markerObj) markerObj.marker.openPopup();
+    }
+
+  </script>
+</body>
+</html>
