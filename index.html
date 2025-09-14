@@ -261,7 +261,7 @@
       day.activities.forEach(act => {
         if (act.marker) {
           var marker = L.marker(act.coords, { icon: createIcon(day.color) }).addTo(map)
-                        .bindPopup("<b>" + act.name + "</b><br>" + act.description);
+                        .bindPopup("<div style='font-size:18px;'><b>" + act.name + "</b><br>" + act.description);
           markers.push({ coords: act.coords, marker: marker });
         }
       });
