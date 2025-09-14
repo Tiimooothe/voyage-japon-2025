@@ -39,12 +39,12 @@
         day: "Jour 2 - Mardi 16 septembre 2025 - Osaka",
         color: "blue",
         activities: [
-          { name: "Kansai International Airport", coords: [34.4342, 135.2444], description: "Arrivée à 10h20" },
+          { name: "10h20 - Kansai International Airport", coords: [34.4342, 135.2444], description: "" },
           { name: "Quartier de Shinsekai", coords: [34.6525, 135.5067], description: "" },
           { name: "Déjeuner dans un restaurant local", coords: null, description: "" },
           { name: "Rue de Dotombori", coords: [34.6687, 135.5018], description: "" },
           { name: "Umeda Sky Building", coords: [34.7054, 135.4899], description: "" },
-          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+          { name: "19h00 : Diner et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
       {
@@ -162,9 +162,12 @@
     // 2. Initialiser la carte
     // ------------------------------
     var map = L.map('map').setView([35.68, 139.76], 11); // par défaut Tokyo
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+
+   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
 
     var markers = [];
 
