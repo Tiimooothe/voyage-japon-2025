@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Voyage Japon</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
+  <style>    
   html, body {
     margin: 0;
     padding: 0;
@@ -23,10 +23,15 @@
     overflow-y: auto;
     padding: 0.5em;
     background: #f8f8f8;
+    font-size: 18px;
   }
 
   .day { margin-bottom: 1em; }
-  .activity { cursor: pointer; margin: 0.2em 0; color: blue; text-decoration: underline; }
+  .activity { cursor: pointer; margin: 0.2em 0; color: blue; text-decoration: underline; font-size: 18px; }
+  
+  body, #planning {
+  -webkit-text-size-adjust: 100%; /* empêche Safari de réduire la taille */
+  }
 
   /* ===== Desktop si écran large ===== */
   @media (min-width: 1024px) {
@@ -82,21 +87,28 @@
         day: "Jour 4 - Jeudi 18 septembre 2025 - Osaka / Nara / Kyoto",
         color: "yellow",
         activities: [
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "9h00 autocar Nara", coords: null, description: "" },
           { name: "Todai-ji", coords: [34.6851, 135.8395], description: "" },
           { name: "Parc aux daims", coords: [34.6850, 135.8443], description: "" },
+          { name: "13h00 : déjeuner dans un restaurant local", coords: null, description: "" },
           { name: "Kasuga Taisha", coords: [34.6863, 135.8497], description: "" },
+          { name: "Transfère pout Kyoto", coords: null, description: "" },
           { name: "Fushimi Inari", coords: [34.9671, 135.7727], description: "" },
-          { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
+          { name: "19h Diner dan restaurant local et nuit à l'hôtel", coords: null, description: "" }
         ]
       },
       {
         day: "Jour 5 - Vendredi 19 septembre 2025 - Kyoto",
         color: "red",
         activities: [
+          { name: "Petit déjeuner à l’hôtel", coords: null, description: "" },
+          { name: "9h00 départ avec guide - transport en communs", coords: null, description: "" },
           { name: "Kinkaku-ji", coords: [35.0394, 135.7292], description: "" },
           { name: "Marché de Nishiki", coords: [35.0042, 135.7651], description: "" },
+          { name: "13h00 Déjeuner dans un restaurant local", coords: null, description: "" },
           { name: "Kiyomizu-dera", coords: [34.9949, 135.7850], description: "" },
-          { name: "Ruelles Ninenzaka et Sannenzaka", coords: [34.9946, 135.7840], description: "" },
+          { name: "Temps libre - Ruelles Ninenzaka et Sannenzaka", coords: [34.9946, 135.7840], description: "" },
           { name: "Quartier de Gion", coords: [35.0035, 135.7788], description: "" },
           { name: "Diner et nuit à l'hôtel", coords: null, description: "" }
         ]
