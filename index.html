@@ -188,7 +188,9 @@
     L.tileLayer('https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}.png?access-token=3eaQhPf2daIUX3JcZLPm2YFXBtxgxpRnAhkqY0oIPRdBaOULWnHpKZtEFBd4VlD6', {
       attribution: '&copy; Jawg Maps | &copy; OpenStreetMap contributors',
       subdomains: ['a','b','c'],
-      maxZoom: 20
+      maxZoom: 20,
+      tileSize: 512,
+      zoomOffset: -1
   }).addTo(map);
 
     map.invalidateSize();
