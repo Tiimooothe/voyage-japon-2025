@@ -26,11 +26,11 @@
     overflow-y: auto;
     padding: 0.5em;
     background: #f8f8f8;
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .day { margin-bottom: 1em; }
-  .activity { cursor: pointer; margin: 0.2em 0; color: blue; text-decoration: underline; font-size: 24px; }
+  .activity { cursor: pointer; margin: 0.2em 0; color: blue; text-decoration: underline; font-size: 28px; }
   
   body, #planning {
   -webkit-text-size-adjust: 100%; /* empêche Safari de réduire la taille */
@@ -261,7 +261,7 @@
       day.activities.forEach(act => {
         if (act.marker) {
           var marker = L.marker(act.coords, { icon: createIcon(day.color) }).addTo(map)
-                        .bindPopup("<div style='font-size:18px;'><b>" + act.name + "</b><br>" + act.description);
+                        .bindPopup("<div style='font-size:24px;'><b>" + act.name + "</b><br>" + act.description);
           markers.push({ coords: act.coords, marker: marker });
         }
       });
